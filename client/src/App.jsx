@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Result from "./pages/Result";
 import Home from "./pages/Home";
 import BuyCredit from "./pages/BuyCredit";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
@@ -18,7 +18,10 @@ export default function App() {
       {showLogin && <Login />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/result" element={token && <Result />} />
+        <Route
+          path="/result"
+          element={token ? <Result /> : <Navigate to="/" />}
+        />
         <Route path="/buy-credit" element={<BuyCredit />} />
       </Routes>
       <Footer />
