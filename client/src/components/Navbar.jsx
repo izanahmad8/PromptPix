@@ -1,10 +1,11 @@
 import { assets } from "../assets/assets.js";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext.jsx";
 export default function Navbar() {
   const { user, setShowLogin, logout, credits } = useContext(AppContext);
   const navigate = useNavigate();
+  const [menu, setMenu] = useState(false);
   return (
     <div className="flex justify-between items-center py-4">
       <Link to="/">
@@ -28,11 +29,20 @@ export default function Navbar() {
                 className="w-10 drop-shadow"
                 src={assets.profile_icon}
                 alt=""
+                onClick={() => setMenu(!menu)}
               />
-              <div className="absolute hidden group-hover:block top-0 right-0 z-10 rounded text-black pt-12">
+              <div
+                className={`absolute ${
+                  menu ? "block" : "hidden"
+                } group-hover:block top-0 right-0 z-10 rounded text-black pt-12`}
+              >
                 <ul className="list-none m-0 p-2 bg-white rounded-md border text-sm">
                   <li
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      setMenu(false);
+                      navigate("/");
+                    }}
                     className="py-1 px-2 cursor-pointer pr-10"
                   >
                     Logout

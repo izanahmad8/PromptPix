@@ -18,7 +18,6 @@ const AppProvider = ({ children }) => {
     setToken("");
     setUser(null);
     toast.success("Logout Successfully");
-    navigate("/");
   };
   const creditData = async () => {
     try {
