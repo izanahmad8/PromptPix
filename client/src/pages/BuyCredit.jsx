@@ -13,7 +13,7 @@ export default function BuyCredit() {
   const navigate = useNavigate();
   const initPay = async (order) => {
     const options = {
-      key: import.meta.env.RAZORPAY_KEY_ID,
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
       amount: order.amount,
       currency: order.currency,
       name: "PromptPix",
@@ -32,7 +32,7 @@ export default function BuyCredit() {
               headers: {
                 token,
               },
-            }
+            },
           );
           const { data } = response;
           if (data.success) {
@@ -62,7 +62,7 @@ export default function BuyCredit() {
           headers: {
             token,
           },
-        }
+        },
       );
       if (data.success) {
         initPay(data.order);
